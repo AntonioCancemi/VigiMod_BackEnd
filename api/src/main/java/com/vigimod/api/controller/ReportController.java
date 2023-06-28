@@ -14,26 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vigimod.api.entity.Ad;
-import com.vigimod.api.service.AdService;
+import com.vigimod.api.entity.Report;
+import com.vigimod.api.service.ReportService;
 
 @RestController
-@RequestMapping("/api/ad")
-class AdController {
+@RequestMapping("/api/report")
+class ReportController {
 
     @Autowired
-    AdService service;
+    ReportService service;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok(service.getAll());
-    }
-
-    @GetMapping("/list")
-    public ResponseEntity<List<Ad>> getAdsByFilter(
-            @RequestParam(required = false) String filter,
-            @RequestParam(required = false) String key) {
-        return ResponseEntity.ok(service.getAdsByFilter(filter, key));
     }
 
     @GetMapping("{id}")
@@ -42,13 +35,13 @@ class AdController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Ad item) {
+    public ResponseEntity<?> create(@RequestBody Report item) {
         return ResponseEntity.ok(service.create(item));
     }
 
     @PutMapping("{id}")
     public ResponseEntity<?> update(@PathVariable("id") Long id,
-            @RequestBody Ad item) {
+            @RequestBody Report item) {
         return ResponseEntity.ok(service.update(id, item));
     }
 
@@ -56,4 +49,12 @@ class AdController {
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.remove(id));
     }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Report>> getAdsByFilter(
+            @RequestParam(required = false) String filter,
+            @RequestParam(required = false) String key) {
+        return ResponseEntity.ok(service.getReportsByFilter(filter, key));
+    }
+
 }

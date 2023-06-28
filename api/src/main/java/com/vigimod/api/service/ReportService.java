@@ -19,6 +19,9 @@ public class ReportService {
     ReportDaoRepo repo;
 
     public List<Report> getAll() {
+        if (repo.findAll().isEmpty()) {
+            throw new EntityExistsException("NO Report FOUND!!!");
+        }
         return repo.findAll();
     }
 
@@ -29,18 +32,18 @@ public class ReportService {
         return repo.findById(id).get();
     }
 
-    public Report create(Report p) {
-
-        return repo.save(p);
+    public Report create(Report r) {
+        r.setCreatedAt(LocalDateTime.now());
+        return repo.save(r);
     }
 
-    public Report update(Long id, Report p) {
+    public Report update(Long id, Report r) {
         // logica per il versioning
         if (!repo.existsById(id)) {
             throw new EntityExistsException("Report ID NOT FOUND!!!");
         }
 
-        return repo.save(p);
+        return repo.save(r);
     }
 
     public String remove(Long id) {
@@ -50,9 +53,10 @@ public class ReportService {
         repo.deleteById(id);
         return "Report eliminato!!!";
     }
-    public List<Report> getAdsByFilter(String filter, String key) {
+
+    public List<Report> getReportsByFilter(String filter, String key) {
         if (repo.findAll().isEmpty()) {
-            throw new EntityExistsException("NO Ads OUND!!!");
+            throw new EntityExistsException("NO Report FOUND!!!");
         }
         switch (filter) {
             case "title":

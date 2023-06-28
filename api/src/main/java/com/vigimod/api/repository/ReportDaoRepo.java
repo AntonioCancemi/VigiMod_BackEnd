@@ -30,6 +30,6 @@ public interface ReportDaoRepo extends JpaRepository<Report, Long> {
 
     List<Report> findByAdProductBrand(String key);
 
-	List<Report> findByAdAdStatus(AdStatus valueOf);
+    List<Report> findByAdAdStatus(AdStatus valueOf);
 
 }

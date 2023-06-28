@@ -1,5 +1,7 @@
 package com.vigimod.api.entity;
 
+import java.time.LocalDateTime;
+
 import com.vigimod.api.utils.ReportCategory;
 
 import jakarta.persistence.Entity;
@@ -28,7 +30,7 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Ad_id")
     private Ad ad;
 
@@ -37,4 +39,5 @@ public class Report {
     private ReportCategory category;
     private String motivation;
     private String messege;
+    private LocalDateTime createdAt;
 }
