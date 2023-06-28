@@ -20,7 +20,7 @@ public interface ReportDaoRepo extends JpaRepository<Report, Long> {
 
     List<Report> findByAdProductId(Long product);
 
-    List<Report> findByAdProductTitleContaining(String keyword);
+    List<Report> findByAdProductTitleContainingIgnoreCase(String keyword);
 
     List<Report> findByAdProductCategory(String category);
 
