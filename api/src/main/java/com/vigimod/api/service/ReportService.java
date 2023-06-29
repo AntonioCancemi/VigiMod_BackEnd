@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vigimod.api.entity.Ad;
 import com.vigimod.api.entity.Report;
 import com.vigimod.api.repository.ReportDaoRepo;
 import com.vigimod.api.utils.AdStatus;
@@ -83,7 +82,7 @@ public class ReportService {
             case "seller":
                 // key check
                 try {
-                     Long.parseLong(key);
+                    Long.parseLong(key);
 
                 } catch (NumberFormatException nfe) {
                     throw new NumberFormatException("Expected number(Long) instead:[" + key + "]");
@@ -96,7 +95,7 @@ public class ReportService {
             case "date":
                 // key check
                 try {
-                   LocalDateTime.parse(key);
+                    LocalDateTime.parse(key);
                 } catch (DateTimeParseException e) {
                     throw new DateTimeException("parse [" + key + "] to LocalDateTime Faild ");
                 }
@@ -108,7 +107,7 @@ public class ReportService {
             case "ad":
                 // key check
                 try {
-                   Long.parseLong(key);
+                    Long.parseLong(key);
 
                 } catch (NumberFormatException nfe) {
                     throw new NumberFormatException("Expected number(Long) instead:[" + key + "]");

@@ -3,7 +3,6 @@ package com.vigimod.api.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.vigimod.api.entity.Ad;
 import com.vigimod.api.entity.Report;
 
 import java.time.LocalDateTime;

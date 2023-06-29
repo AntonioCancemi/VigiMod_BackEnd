@@ -1,8 +1,6 @@
 package com.vigimod.api.exception;
 
-import java.text.ParseException;
 import java.time.DateTimeException;
-import java.time.format.DateTimeParseException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

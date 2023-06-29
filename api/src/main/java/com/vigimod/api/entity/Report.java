@@ -40,4 +40,8 @@ public class Report {
     private String motivation;
     private String messege;
     private LocalDateTime createdAt;
+        
+    public String toLog(){
+        return this.id+","+this.ad.getId()+","+this.category+","+this.motivation+","+this.messege+","+this.createdAt+";";
+    }
 }
