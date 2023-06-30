@@ -15,9 +15,7 @@ public class ApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiApplication.class, args);
-		Report r = new Report(1L, new Ad(), ReportCategory.DUPLICATE, "MOTIVATION", "MESSEGE", LocalDateTime.now());
-		ReportFileUtils.writeFile(null, r.toLog());
-		System.out.println(ReportFileUtils.readFile(null));
+
 	}
 
 }
