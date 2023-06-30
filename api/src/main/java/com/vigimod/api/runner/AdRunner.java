@@ -1,6 +1,9 @@
 package com.vigimod.api.runner;
 
 import java.time.LocalDateTime;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -33,7 +36,7 @@ public class AdRunner implements ApplicationRunner {
     public void setAd() {
         List<Product> pList = productRpo.findAll();
         Random rand = new Random();
-        final String[] l = {
+        String[] larr = {
                 "Italia, Lombardia, Milano",
                 "Spagna, Catalogna, Barcellona",
                 "Francia, Île-de-France, Parigi",
@@ -71,18 +74,19 @@ public class AdRunner implements ApplicationRunner {
                 "Malta, La Valletta, La Valletta",
                 "Cipro, Nicosia, Nicosia"
         };
+        List<String> llist = new ArrayList<>(Arrays.asList(larr));
         for (int i = 0; i < 10; i++) {
             Ad a = new Ad();
             a.setAdStatus(AdStatus.PENDING);
 
             // Generate a random index only if the location array has elements
-            if (l.length > 0) {
-                a.setLocation(l[rand.nextInt(l.length)]);
+            if (!llist.isEmpty()) {
+                a.setLocation(llist.get(rand.nextInt(llist.size())));
             }
 
             a.setProduct(pList.get(rand.nextInt(pList.size())));
             a.setPublicationDate(LocalDateTime.now());
-
+            System.out.println(a);
             // if (repo.findByProduct(a.getProduct()).isEmpty()) {
             // repo.save(a);
             // }
@@ -94,10 +98,11 @@ public class AdRunner implements ApplicationRunner {
             // a.setPublicationDate(LocalDateTime.now());
 
             // // System.out.println(s);
-            // if (repo.findByProduct(a.getProduct()).isEmpty()) {
+            if (repo.findByProductAndLocationAndAndPublicationDate(a.getProduct(), a.getLocation(),
+                    a.getPublicationDate()).isEmpty()) {
 
-            // repo.save(a);
-            // }
+                repo.save(a);
+            }
         }
     }
 }
