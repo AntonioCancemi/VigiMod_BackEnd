@@ -20,7 +20,6 @@ import com.vigimod.api.entity.Ad;
 import com.vigimod.api.service.AdService;
 
 @RestController
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/ad")
 class AdController {
