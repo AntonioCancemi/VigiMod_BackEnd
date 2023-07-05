@@ -84,11 +84,18 @@ public class AdService {
                 }
                 return repo.findByProductTitleContainingAllIgnoreCase(key);
             case "seller":
+                // key check
+                try {
+                    Long.parseLong(key);
+
+                } catch (NumberFormatException nfe) {
+                    throw new NumberFormatException("Expected number(Long) instead:[" + key + "]");
+                }
                 // DB check
-                if (repo.findByProductCategoryAllIgnoreCase(key).isEmpty()) {
+                if (repo.findByProductSellerId(Long.parseLong(key)).isEmpty()) {
                     throw new EntityNotFoundException("Ad:seller:[" + key + "] NOT FOUND!!!");
                 }
-                return repo.findByProductCategoryAllIgnoreCase(key);
+                return repo.findByProductSellerId(Long.parseLong(key));
             case "brand":
                 // DB check
                 if (repo.findByProductBrandAllIgnoreCase(key).isEmpty()) {
