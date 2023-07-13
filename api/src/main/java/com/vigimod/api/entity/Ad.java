@@ -35,7 +35,7 @@ public class Ad {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
-	
+
 	// Other ad properties
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -46,6 +46,12 @@ public class Ad {
 
 	@Column(nullable = false)
 	private LocalDateTime publicationDate;
+
+	@Column(nullable = true)
+	private String motivation;
+
+	@Column(nullable = true)
+	private LocalDateTime lastUpdateAt;
 
 	// ...
 }

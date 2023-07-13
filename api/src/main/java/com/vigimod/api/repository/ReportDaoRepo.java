@@ -9,13 +9,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.vigimod.api.utils.AdStatus;
-import com.vigimod.api.utils.ReportCategory;
 
 @Repository
 public interface ReportDaoRepo extends JpaRepository<Report, Long> {
     List<Report> findByAdId(Long ad);
-
-    List<Report> findByCategory(ReportCategory category);
 
     List<Report> findByAdProductId(Long product);
 

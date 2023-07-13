@@ -3,13 +3,17 @@ package com.vigimod.api.service;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vigimod.api.entity.Ad;
+import com.vigimod.api.entity.Seller;
 import com.vigimod.api.repository.AdDaoRepo;
 import com.vigimod.api.utils.AdStatus;
 
@@ -21,14 +25,39 @@ public class AdService {
     @Autowired
     AdDaoRepo repo;
 
+    public Map<Long, List<Ad>> getAdsGroupedBySellerWithPendingStatus() {
+        List<Ad> ads = repo.findByAdStatus(AdStatus.PENDING);
+        Map<Long, List<Ad>> adsBySeller = new HashMap<>();
+
+        for (Ad ad : ads) {
+            Seller seller = ad.getProduct().getSeller();
+            if (seller != null) {
+                Long sellerId = seller.getId();
+                adsBySeller.computeIfAbsent(sellerId, key -> new ArrayList<>()).add(ad);
+            }
+        }
+
+        return adsBySeller;
+    }
+
+    public Long getCountPendingAds() {
+        return repo.countPendingAds();
+    }
+
     // CRUD
     // get all
-    public List<Ad> getAll() {
+    // Map<Long, List<Ad>>
+    public Map<Long, List<Ad>> getAllBySeller() {
         // DB cehck
         if (repo.findAll().isEmpty()) {
-            throw new EntityExistsException("NO Ads OUND!!!");
+            throw new EntityExistsException("NO Ads FOUND!!!");
         }
-        return repo.findAll();
+        Map<Long, List<Ad>> adsBySeller = new HashMap<>();
+        for (Ad ad : repo.findAll()) {
+            Long sellerId = ad.getProduct().getSeller().getId();
+            adsBySeller.computeIfAbsent(sellerId, k -> new ArrayList<>()).add(ad);
+        }
+        return adsBySeller;
     }
 
     // get By ID

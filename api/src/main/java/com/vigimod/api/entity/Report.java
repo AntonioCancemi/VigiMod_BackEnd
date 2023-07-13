@@ -2,8 +2,6 @@ package com.vigimod.api.entity;
 
 import java.time.LocalDateTime;
 
-import com.vigimod.api.utils.ReportCategory;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,13 +33,7 @@ public class Report {
     private Ad ad;
 
     // private User user;
-    @Enumerated(EnumType.STRING)
-    private ReportCategory category;
-    private String motivation;
     private String messege;
     private LocalDateTime createdAt;
-        
-    public String toLog(){
-        return this.id+","+this.ad.getId()+","+this.category+","+this.motivation+","+this.messege+","+this.createdAt+";";
-    }
+
 }

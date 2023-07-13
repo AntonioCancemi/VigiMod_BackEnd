@@ -28,7 +28,7 @@ public class AdRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if (repo.findAll().isEmpty()) {
+        if (repo.findByAdStatus(AdStatus.PENDING).isEmpty()) {
             setAd();
         }
     }
@@ -87,22 +87,11 @@ public class AdRunner implements ApplicationRunner {
             a.setProduct(pList.get(rand.nextInt(pList.size())));
             a.setPublicationDate(LocalDateTime.now());
             System.out.println(a);
-            // if (repo.findByProduct(a.getProduct()).isEmpty()) {
-            // repo.save(a);
-            // }
-            // for (int i = 0; i < 10; i++) {
-            // Ad a = new Ad();
-            // a.setAdStatus(AdStatus.PENDING);
-            // a.setLocation(l[rand.nextInt(l.length)]);
-            // a.setProduct(pList.get(rand.nextInt(pList.size())));
-            // a.setPublicationDate(LocalDateTime.now());
-
-            // // System.out.println(s);
             if (repo.findByProductAndLocationAndAndPublicationDate(a.getProduct(), a.getLocation(),
                     a.getPublicationDate()).isEmpty()) {
-
                 repo.save(a);
             }
+
         }
     }
 }

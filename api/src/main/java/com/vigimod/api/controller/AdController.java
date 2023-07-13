@@ -1,6 +1,7 @@
 package com.vigimod.api.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,19 @@ class AdController {
     @GetMapping
     @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok(service.getAll());
+        return ResponseEntity.ok(service.getAllBySeller());
+    }
+
+    @GetMapping("/count")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<?> getCountAll() {
+        return ResponseEntity.ok(service.getCountPendingAds());
+    }
+
+    @GetMapping("/dashboard")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<?> getAdsForDashboard() {
+        return ResponseEntity.ok(service.getAdsGroupedBySellerWithPendingStatus());
     }
 
     @GetMapping("/list")

@@ -24,11 +24,11 @@ public class ProductRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         if (repo.findAll().isEmpty() && !seller.findAll().isEmpty()) {
-            setSeller();
+            setProduct();
         }
     }
 
-    public void setSeller() {
+    public void setProduct() {
         List<Seller> sellerList = seller.findAll();
         final String[] example = {
                 "Apple iPhone 12", "Samsung Galaxy S21", "Sony PlayStation 5", "Canon EOS R5",
