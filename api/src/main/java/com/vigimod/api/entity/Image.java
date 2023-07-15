@@ -1,12 +1,7 @@
 package com.vigimod.api.entity;
 
-import java.time.LocalDateTime;
-
-import com.vigimod.api.security.entity.User;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,25 +15,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "reports")
+@Table(name = "images")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Report {
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(nullable = false)
+    private String imagePath;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Ad_id")
-    private Ad ad;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    // private User user;
-    private String messege;
-    private LocalDateTime createdAt;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 }

@@ -65,7 +65,6 @@ public class ProductRunner implements ApplicationRunner {
             p.setCategory(categories[rand.nextInt(categories.length)]);
             p.setDescription(faker.lorem().fixedString(200));
             p.setPrice(rand.nextInt(1000));
-            p.setThumbnail(faker.internet().image());
             p.setStock(rand.nextInt(110));
             p.setDiscount(roundToTwoDecimals(rand.nextDouble(60)));
             p.setRating((roundToTwoDecimals(rand.nextDouble(3))) + 2);
@@ -82,65 +81,5 @@ public class ProductRunner implements ApplicationRunner {
     private Double roundToTwoDecimals(double number) {
         return Math.round(number * 100.0) / 100.0;
     }
-    // private static final String[] TITLES_ELECTRONICS = {
-    // "Apple iPhone 12", "Samsung Galaxy S21", "Sony PlayStation 5", "Canon EOS
-    // R5",
-    // "Samsung 65-inch 4K Smart TV", "Amazon Echo Dot", "Google Pixel 5",
-    // "Microsoft Xbox Series X", "LG CX OLED TV"
-    // };
 
-    // private static final String[] TITLES_APPLIANCES = {
-    // "Instant Pot Duo", "Dyson V11 Vacuum Cleaner", "Nespresso VertuoPlus Coffee
-    // Machine",
-    // "KitchenAid Stand Mixer", "Cuisinart Air Fryer", "Roomba i7+ Robot Vacuum",
-    // "Breville Smart Oven"
-    // };
-
-    // private static final String[] TITLES_FASHION = {
-    // "Nike Air Max 270", "Adidas Ultraboost", "Levi's 501 Jeans", "Ray-Ban
-    // Wayfarer Sunglasses", "Hermes Birkin Bag",
-    // "Rolex Submariner Watch", "Zara Trench Coat"
-    // };
-
-    // private static final String[] TITLES_HOME = {
-    // "LG OLED CX Series", "Roomba i7+ Robot Vacuum", "Vitamix 5200 Blender",
-    // "Sonos One Speaker", "Philips Hue Smart Bulbs", "Nest Learning Thermostat",
-    // "Dyson Supersonic Hair Dryer"
-    // };
-
-    // private static final String[] TITLES_COMPUTERS = {
-    // "Microsoft Surface Laptop 4", "Apple MacBook Pro", "Dell XPS 15", "HP Spectre
-    // x360", "Lenovo ThinkPad X1 Carbon",
-    // "ASUS ROG Zephyrus G14", "Acer Predator Helios 300"
-    // };
-
-    // private static final String[] TITLES_GAMING = {
-    // "Sony PlayStation 5", "Microsoft Xbox Series X", "Nintendo Switch", "PC
-    // Gaming Desktop", "Razer Gaming Mouse",
-    // "SteelSeries Arctis 7 Headset", "Logitech G502 Gaming Keyboard"
-    // };
-
-    // private static final String[] TITLES_CAMERAS = {
-    // "Canon EOS R5", "Sony Alpha A7 III", "Nikon Z6", "Fujifilm X-T4", "GoPro
-    // Hero9 Black",
-    // "DJI Mavic Air 2", "Olympus OM-D E-M1 Mark III"
-    // };
-
-    // private static final String[] TITLES_SHOES = {
-    // "Nike Air Max 270", "Adidas Ultraboost", "Vans Old Skool", "Converse Chuck
-    // Taylor All Star", "Puma Suede Classic",
-    // "New Balance 574", "Reebok Classic Leather"
-    // };
-
-    // private static final String[] TITLES_SPORTS = {
-    // "Nike Air Max 270", "Adidas Ultraboost", "Yoga Mat", "Dumbbell Set",
-    // "Treadmill",
-    // "Cycling Bike", "Boxing Gloves"
-    // };
-
-    // private static final String[] TITLES_HEALTH = {
-    // "Fitbit Versa 3", "Apple Watch Series 6", "Garmin Forerunner 245", "Withings
-    // Body+ Smart Scale", "Theragun PRO",
-    // "Resistance Bands", "Yoga Block"
-    // };
 }

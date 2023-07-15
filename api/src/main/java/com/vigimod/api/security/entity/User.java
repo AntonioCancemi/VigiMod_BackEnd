@@ -3,6 +3,10 @@ package com.vigimod.api.security.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.mapping.List;
+
+import com.vigimod.api.entity.Report;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
@@ -45,8 +50,9 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
-	// @OneToMany(mappedBy = "utente")
-	// private List<Prenotazione> prenotazioniInCorso;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "users_reports", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "report_id", referencedColumnName = "id"))
+	private Set<Report> reports = new HashSet<>();
 
 	// Il caricamento EAGER delle raccolte significa che vengono recuperate
 	// completamente nel momento in cui viene recuperato il loro genitore

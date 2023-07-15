@@ -1,5 +1,8 @@
 package com.vigimod.api.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,15 +44,21 @@ public class Product {
 	private String brand;
 	@Column(nullable = false)
 	private String category;
-	private String thumbnail;
+
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+	private List<Image> images = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "seller_id")
 	private Seller seller;
 
-	// Other product properties
+	public List<Image> getImages() {
+		return images;
+	}
 
-	// ...
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
 }
 // product
 // {

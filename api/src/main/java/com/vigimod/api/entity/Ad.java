@@ -3,6 +3,7 @@ package com.vigimod.api.entity;
 import java.time.LocalDateTime;
 
 import com.vigimod.api.utils.AdStatus;
+import com.vigimod.api.utils.ShippingType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,9 +38,12 @@ public class Ad {
 	private Product product;
 
 	// Other ad properties
-	@Column(nullable = false)
+	@Column(nullable = false, name = "ad_status")
 	@Enumerated(EnumType.STRING)
 	private AdStatus adStatus;
+	@Column(nullable = true, name = "shipping_type")
+	@Enumerated(EnumType.STRING)
+	private ShippingType shippingType;
 
 	@Column(nullable = false)
 	private String location;// country-region-city

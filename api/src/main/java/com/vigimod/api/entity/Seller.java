@@ -1,5 +1,6 @@
 package com.vigimod.api.entity;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import com.github.javafaker.Faker;
@@ -31,7 +32,7 @@ public class Seller {
 	private Long id;
 	@Column(nullable = false, unique = true)
 	private String username;
-	@Column(nullable = false)
+
 	private String fullName;
 	@Column(nullable = false, unique = true)
 	private String email;
@@ -43,6 +44,9 @@ public class Seller {
 	// per il livello di moderazione
 	@Enumerated(EnumType.STRING)
 	private SellerType sellerType;
+	// to false
+	@Column(nullable = true)
+	private LocalDateTime createdAt;
 
 	public Seller sellerTestBean(boolean active) {
 		return Seller.builder()
@@ -71,6 +75,3 @@ public class Seller {
 				.build();
 	}
 }
-// One-to-Many relationship with Ad
-// @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
-// private List<Ad> ads;
