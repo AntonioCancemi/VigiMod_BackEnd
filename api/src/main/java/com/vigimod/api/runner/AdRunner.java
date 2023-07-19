@@ -17,6 +17,7 @@ import com.vigimod.api.entity.Product;
 import com.vigimod.api.repository.AdDaoRepo;
 import com.vigimod.api.repository.ProductDaoRepo;
 import com.vigimod.api.utils.AdStatus;
+import com.vigimod.api.utils.ShippingType;
 
 @Component
 public class AdRunner implements ApplicationRunner {
@@ -35,6 +36,7 @@ public class AdRunner implements ApplicationRunner {
 
     public void setAd() {
         List<Product> pList = productRpo.findAll();
+        ShippingType[] sList = ShippingType.values();
         Random rand = new Random();
         String[] larr = {
                 "Italia, Lombardia, Milano",
@@ -78,7 +80,7 @@ public class AdRunner implements ApplicationRunner {
         for (int i = 0; i < 10; i++) {
             Ad a = new Ad();
             a.setAdStatus(AdStatus.PENDING);
-
+            a.setShippingType(sList[rand.nextInt(sList.length)]);
             // Generate a random index only if the location array has elements
             if (!llist.isEmpty()) {
                 a.setLocation(llist.get(rand.nextInt(llist.size())));

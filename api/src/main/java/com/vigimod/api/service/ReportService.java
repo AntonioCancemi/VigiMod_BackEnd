@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vigimod.api.entity.Report;
+import com.vigimod.api.entity.DTO.ReportDTO;
+import com.vigimod.api.repository.AdDaoRepo;
 import com.vigimod.api.repository.ReportDaoRepo;
+import com.vigimod.api.security.repository.UserRepository;
 import com.vigimod.api.utils.AdStatus;
 
 import jakarta.persistence.EntityExistsException;
@@ -20,6 +23,10 @@ import jakarta.persistence.EntityNotFoundException;
 public class ReportService {
     @Autowired
     ReportDaoRepo repo;
+    @Autowired
+    AdDaoRepo adRepo;
+    @Autowired
+    UserRepository userRepo;
 
     public List<Report> getAll() {
         if (repo.findAll().isEmpty()) {
@@ -35,9 +42,17 @@ public class ReportService {
         return repo.findById(id).get();
     }
 
-    public Report create(Report r) {
-        r.setCreatedAt(LocalDateTime.now());
-        return repo.save(r);
+    public Report create(ReportDTO r) {
+        if (!userRepo.existsById(r.getUserId())) {
+            throw new EntityExistsException("User NOT FOUND!!!");
+        }
+        if (!adRepo.existsById(r.getAdId())) {
+            throw new EntityExistsException("Ad NOT FOUND!!!");
+        }
+        Report report = Report.builder().ad(adRepo.findById(r.getAdId()).get()).createdAt(LocalDateTime.now())
+                .message(r.getMessage()).user(userRepo.findById(r.getUserId()).get()).build();
+
+        return repo.save(report);
     }
 
     public Report update(Long id, Report r) {

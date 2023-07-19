@@ -9,8 +9,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.github.javafaker.Faker;
+import com.vigimod.api.entity.Image;
 import com.vigimod.api.entity.Product;
 import com.vigimod.api.entity.Seller;
+import com.vigimod.api.repository.ImageDaoRepo;
 import com.vigimod.api.repository.ProductDaoRepo;
 import com.vigimod.api.repository.SellerDaoRepo;
 
@@ -20,16 +22,22 @@ public class ProductRunner implements ApplicationRunner {
     SellerDaoRepo seller;
     @Autowired
     ProductDaoRepo repo;
+    @Autowired
+    ImageDaoRepo image;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if (repo.findAll().isEmpty() && !seller.findAll().isEmpty()) {
+        if (repo.findAll().isEmpty()) {
             setProduct();
         }
     }
 
     public void setProduct() {
         List<Seller> sellerList = seller.findAll();
+        final String[] imagesPath = {
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3pUwjmkQ-rlNLeyTIdIyHqu1VLrqTfYRGVw&usqp=CAU",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwoIf9ZklBa1ieaSmMsqePXX9QfbPoCzOM7Q&usqp=CAU",
+                "https://rabona.store/wp-content/uploads/2022/09/pc-specs-header02.png" };
         final String[] example = {
                 "Apple iPhone 12", "Samsung Galaxy S21", "Sony PlayStation 5", "Canon EOS R5",
                 "Samsung 65-inch 4K Smart TV", "Amazon Echo Dot", "Google Pixel 5", "Microsoft Xbox Series X",
@@ -55,26 +63,29 @@ public class ProductRunner implements ApplicationRunner {
 
         Faker faker = new Faker();
         Random rand = new Random();
-        for (int i = 0; i < 10; i++) {
+        while (repo.findAll().size() < 15) {
             String titles = example[rand.nextInt(example.length)];
             String brand = titles.split(" ")[0];
-            Product p = new Product();
-            p.setSeller(sellerList.get(rand.nextInt(sellerList.size())));
-            p.setTitle(titles);
-            p.setBrand(brand);
-            p.setCategory(categories[rand.nextInt(categories.length)]);
-            p.setDescription(faker.lorem().fixedString(200));
-            p.setPrice(rand.nextInt(1000));
-            p.setStock(rand.nextInt(110));
-            p.setDiscount(roundToTwoDecimals(rand.nextDouble(60)));
-            p.setRating((roundToTwoDecimals(rand.nextDouble(3))) + 2);
+            Product p = Product.builder()
+                    .seller(sellerList.get(rand.nextInt(sellerList.size())))
+                    .title(titles).brand(brand)
+                    .category(categories[rand.nextInt(categories.length)])
+                    .description(faker.lorem().fixedString(200))
+                    .price(rand.nextInt(1000))
+                    .stock(rand.nextInt(110))
+                    .build();
+            repo.save(p);
 
-            // System.out.println(p);
-            if (repo.findByTitleAndDescriptionAndBrandAndCategoryAndPrice(p.getTitle(), p.getDescription(),
-                    p.getBrand(), p.getCategory(), p.getPrice()).isEmpty()) {
+            image.save(Image.builder().imagePath(imagesPath[rand.nextInt(imagesPath.length)]).productId(p.getId())
+                    .build());
+            image.save(Image.builder().imagePath(imagesPath[rand.nextInt(imagesPath.length)]).productId(p.getId())
+                    .build());
+            image.save(Image.builder().imagePath(imagesPath[rand.nextInt(imagesPath.length)]).productId(p.getId())
+                    .build());
+            image.save(Image.builder().imagePath(imagesPath[rand.nextInt(imagesPath.length)]).productId(p.getId())
+                    .build());
+            // }
 
-                repo.save(p);
-            }
         }
     }
 

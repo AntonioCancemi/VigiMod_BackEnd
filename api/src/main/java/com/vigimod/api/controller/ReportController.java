@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vigimod.api.entity.Report;
+import com.vigimod.api.entity.DTO.ReportDTO;
 import com.vigimod.api.service.ReportService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -49,7 +50,7 @@ class ReportController {
 
     @PostMapping
     @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-    public ResponseEntity<?> create(@RequestBody Report item) {
+    public ResponseEntity<?> create(@RequestBody ReportDTO item) {
         return ResponseEntity.ok(service.create(item));
     }
 

@@ -41,7 +41,6 @@ public interface AdDaoRepo extends JpaRepository<Ad, Long> {
     List<Ad> findByProductPriceLessThan(double price);
 
     // Filtraggio degli annunci per valutazione del prodotto superiore a un valore
-    List<Ad> findByProductRatingGreaterThan(double rating);
 
     // Filtraggio degli annunci per disponibilità di stock
     List<Ad> findByProductStockGreaterThan(int stock);

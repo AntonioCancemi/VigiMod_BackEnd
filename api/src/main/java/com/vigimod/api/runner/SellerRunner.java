@@ -1,5 +1,6 @@
 package com.vigimod.api.runner;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,18 @@ public class SellerRunner implements ApplicationRunner {
         Faker faker = new Faker();
         SellerType[] t = SellerType.values();
         Random rand = new Random();
-        for (int i = 0; i < 10; i++) {
-            Seller s = new Seller();
-            s.setUsername(faker.name().username());
-            s.setFullName(faker.name().fullName());
-            s.setEmail(faker.internet().emailAddress());
-            s.setPhoneNumber(faker.phoneNumber().cellPhone());
-            s.setAccontActive(rand.nextBoolean());
-            s.setImage(faker.internet().image());
-            s.setSellerType(t[rand.nextInt(t.length)]);
+        while (repo.findAll().size() < 10) {
+            Seller s = Seller.builder().username(faker.name().username())
+                    .fullName(faker.name().fullName()).email(faker.internet().emailAddress())
+                    .phoneNumber(faker.phoneNumber().cellPhone()).accontActive(true).image(faker.internet().image())
+                    .sellerType(t[rand.nextInt(t.length)]).createdAt(LocalDateTime.now()).build();
+            // s.setUsername(faker.name().username());
+            // s.setFullName(faker.name().fullName());
+            // s.setEmail(faker.internet().emailAddress());
+            // s.setPhoneNumber(faker.phoneNumber().cellPhone());
+            // s.setAccontActive(rand.nextBoolean());
+            // s.setImage(faker.internet().image());
+            // s.setSellerType(t[rand.nextInt(t.length)]);
 
             // System.out.println(s);
             if (!repo.existsByUsernameAndEmailAndPhoneNumber(s.getUsername(),

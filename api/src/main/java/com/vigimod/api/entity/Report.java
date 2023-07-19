@@ -38,7 +38,7 @@ public class Report {
     private User user;
 
     // private User user;
-    private String messege;
+    private String message;
     private LocalDateTime createdAt;
 
 }
