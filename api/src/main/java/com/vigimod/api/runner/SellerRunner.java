@@ -30,7 +30,7 @@ public class SellerRunner implements ApplicationRunner {
         Faker faker = new Faker();
         SellerType[] t = SellerType.values();
         Random rand = new Random();
-        while (repo.findAll().size() < 10) {
+        while (repo.findAll().size() < 15) {
             Seller s = Seller.builder().username(faker.name().username())
                     .fullName(faker.name().fullName()).email(faker.internet().emailAddress())
                     .phoneNumber(faker.phoneNumber().cellPhone()).accontActive(true).image(faker.internet().image())

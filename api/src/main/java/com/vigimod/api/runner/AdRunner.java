@@ -77,7 +77,7 @@ public class AdRunner implements ApplicationRunner {
                 "Cipro, Nicosia, Nicosia"
         };
         List<String> llist = new ArrayList<>(Arrays.asList(larr));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             Ad a = new Ad();
             a.setAdStatus(AdStatus.PENDING);
             a.setShippingType(sList[rand.nextInt(sList.length)]);

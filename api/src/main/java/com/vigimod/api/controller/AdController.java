@@ -31,7 +31,7 @@ class AdController {
     @GetMapping
     @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok(service.getAllBySeller());
+        return ResponseEntity.ok(service.getAll());
     }
 
     @GetMapping("/count")

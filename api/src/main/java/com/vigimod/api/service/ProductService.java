@@ -42,14 +42,6 @@ public class ProductService {
                 p.getCategory(), p.getPrice()).isEmpty()) {
             throw new EntityExistsException("Product Already exists!!!");
         }
-        // if (!sellerRepo.existsById(p.getSellerId())) {
-        // throw new EntityNotFoundException("Seller Not Found");
-        // }
-        // Seller s = sellerRepo.findById(p.getSellerId()).get();
-        // Product product =
-        // Product.builder().brand(p.getBrand()).category(p.getCategory())
-        // .description(p.getDescription()).price(p.getPrice()).seller(s).stock(p.getStock()).title(p.getTitle())
-        // .build();
         return repo.save(p);
     }
 
