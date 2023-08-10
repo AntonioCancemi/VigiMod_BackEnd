@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.hibernate.mapping.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vigimod.api.entity.Report;
 
 import jakarta.persistence.CascadeType;
@@ -48,6 +49,7 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String email;
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

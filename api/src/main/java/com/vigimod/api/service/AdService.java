@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vigimod.api.entity.Ad;
+import com.vigimod.api.entity.Product;
 import com.vigimod.api.entity.Seller;
 import com.vigimod.api.repository.AdDaoRepo;
 import com.vigimod.api.utils.AdStatus;
@@ -24,6 +25,11 @@ import jakarta.persistence.EntityNotFoundException;
 public class AdService {
     @Autowired
     AdDaoRepo repo;
+
+    public List<Ad> getAll() {
+
+        return repo.findAll();
+    }
 
     public Map<Long, List<Ad>> getAdsGroupedBySellerWithPendingStatus() {
         List<Ad> ads = repo.findByAdStatus(AdStatus.PENDING);
