@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "sellers")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Data 
 @Builder
 public class Seller {
 
@@ -55,30 +55,30 @@ public class Seller {
 	@Column(nullable = true)
 	private LocalDateTime createdAt;
 
-	public Seller sellerTestBean(boolean active) {
-		return Seller.builder()
-				.username("test")
-				.fullName("test")
-				.email("test")
-				.phoneNumber("test")
-				.accontActive(active ? true : false)
-				.image("test")
-				.sellerType(SellerType.AGENCY)
-				.build();
-	}
+	// public Seller sellerTestBean(boolean active) {
+	// 	return Seller.builder()
+	// 			.username("test")
+	// 			.fullName("test")
+	// 			.email("test")
+	// 			.phoneNumber("test")
+	// 			.accontActive(active ? true : false)
+	// 			.image("test")
+	// 			.sellerType(SellerType.AGENCY)
+	// 			.build();
+	// }
 
-	public Seller sellerFakeBean() {
-		Faker faker = new Faker();
-		SellerType[] t = SellerType.values();
-		Random rand = new Random();
-		return Seller.builder()
-				.username(faker.name().username())
-				.fullName(faker.name().fullName())
-				.email(faker.internet().emailAddress())
-				.phoneNumber(faker.phoneNumber().cellPhone())
-				.accontActive(rand.nextBoolean())
-				.image(faker.internet().image())
-				.sellerType(t[rand.nextInt(t.length)])
-				.build();
-	}
+	// public Seller sellerFakeBean() {
+	// 	Faker faker = new Faker();
+	// 	SellerType[] t = SellerType.values();
+	// 	Random rand = new Random();
+	// 	return Seller.builder()
+	// 			.username(faker.name().username())
+	// 			.fullName(faker.name().fullName())
+	// 			.email(faker.internet().emailAddress())
+	// 			.phoneNumber(faker.phoneNumber().cellPhone())
+	// 			.accontActive(rand.nextBoolean())
+	// 			.image(faker.internet().image())
+	// 			.sellerType(t[rand.nextInt(t.length)])
+	// 			.build();
+	// }
 }
