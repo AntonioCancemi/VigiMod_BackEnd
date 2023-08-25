@@ -30,7 +30,7 @@ carico di annunci (tipo, categoria, stato).
 
 ➖ 5️⃣ 𝗥𝗲𝗽𝗼𝗿𝘁: Ogni azione effettuata dai moderatori viene registrata in modo da avere per i moderatori un quadro generale di quello che fanno (sezione account), per gli admin* una visuale sull'efficienza di ogni moderatore.
 
-*️⃣ work in progress!! ⚠
+work in progress!! ⚠
 ----------------------------
 🖥 𝙵𝚛𝚘𝚗𝚝𝙴𝚗𝚍:
 Javascript | React | Bootstrap | Router-dom | Redux | Axios | chart.js |
