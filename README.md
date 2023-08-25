@@ -1,5 +1,7 @@
 # VigiMod_BackEnd
-#Link seconda repo FRONTEND: https://github.com/AntonioCancemi/VigiMod_FrontEnd
+Link seconda repo FRONTEND: https://github.com/AntonioCancemi/VigiMod_FrontEnd
+Link video DEMO: https://www.linkedin.com/posts/antonio-francesco-cancemi-bb1b39272_%EF%BD%96%EF%BD%89%EF%BD%87%EF%BD%89%EF%BD%8D%EF%BD%8F%EF%BD%84-vigilant-moderator-sono-orgoglioso-activity-7095401772004855809-KRM-?utm_source=share&utm_medium=member_desktop
+
 ⬇ ＶｉｇｉＭｏｄ ⬇
 (vigilant moderator)
 Sono orgoglioso di presentare la mia prima web app, un progetto ambizioso, dall'idea di un neo fullstack Web Developer fino alla realizzazione di tutto questo...
@@ -13,7 +15,6 @@ intuitiva e che metta in risalto le informazioni più importanti, grazie anche a
 visionare l'efficienza dei dipendenti, oltre ad avere un quadro completo del
 carico di annunci (tipo, categoria, stato).
 
-🖱 𝟯-𝗰𝗹𝗶𝗰𝗸-𝗿𝘂𝗹𝗲: ogni azione è attuabile in appena 3 click per garantire fluidità e velocità.
 ----------------------------
 📈 ⬇ Corefeatures:
 
